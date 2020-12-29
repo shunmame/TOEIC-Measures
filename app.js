@@ -12,9 +12,11 @@ function getCSV(){
     // レスポンスが返ってきたらconvertCSVtoArray()を呼ぶ	
     req.onload = function(){
         convertCSVtoArray(req.responseText); // 渡されるのは読み込んだCSVデータ
-        console.log(word_list[1]);
-        console.log(mean_list[1]);
+        console.log(word_list.length);
+        console.log(mean_list.length);
         showWord();
+        showQuestion();
+        showTable();
     }
 }
  
@@ -32,7 +34,52 @@ function convertCSVtoArray(str){ // 読み込んだCSVデータが文字列と�
 }
 
 function showWord(){
-    var ind = Math.floor( Math.random() * word_list.length );
+    var ind = Math.floor( Math.random() * ((word_list.length-1) + 1 - 1)) + 1;
     document.getElementById("word").innerText = word_list[ind];
-    document.getElementById("mean").innerText = mean_list[ind];
+    document.getElementById("mean").innerText = mean_list[ind].replace(/"/g, ' ');
+}
+
+function showTable(){
+    var tbody_1 = document.getElementById("tbody1");
+    var tbody_2 = document.getElementById("tbody2");
+    for(var i=1; i<word_list.length/2 - 31;i++){
+        // tr要素を生成
+        var tr = document.createElement('tr');
+        var th = document.createElement('th');
+        th.textContent = i;
+        tr.appendChild(th);
+        var td = document.createElement('td');
+        td.textContent = word_list[i];
+        tr.appendChild(td);
+        var td = document.createElement('td');
+        td.textContent = mean_list[i].replace(/"/g, ' ');
+        tr.appendChild(td);
+        tbody_1.appendChild(tr);
+    }
+    for(var i=word_list.length/2 - 31; i<word_list.length-1;i++){
+        // tr要素を生成
+        var tr = document.createElement('tr');
+        var th = document.createElement('th');
+        th.textContent = i;
+        tr.appendChild(th);
+        var td = document.createElement('td');
+        td.textContent = word_list[i];
+        tr.appendChild(td);
+        var td = document.createElement('td');
+        td.textContent = mean_list[i].replace(/"/g, ' ');
+        tr.appendChild(td);
+        tbody_2.appendChild(tr);
+    }
+}
+
+function showQuestion(){
+    document.getElementById("a_mean").style.visibility ="hidden";
+    var ind = Math.floor( Math.random() * ((word_list.length-1) + 1 - 1)) + 1;
+    document.getElementById("q_word").innerText = word_list[ind];
+    document.getElementById("a_mean").innerText = mean_list[ind].replace(/"/g, ' ');
+}
+
+function showAnswer(){
+    document.getElementById("a_mean").style.visibility ="visible";
+    window.setTimeout("showQuestion()", 2000);
 }

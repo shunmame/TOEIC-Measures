@@ -12,11 +12,63 @@
     <title>TOEIC対策 -単語帳-</title>
   </head>
   <body>
-    <h1>TOEIC対策 -単語帳-</h1>
+    <div class="card text-center" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <h5>TOEIC対策 -単語帳-</h5>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" id="word"></h5>
+        <p class="card-text" id="mean"></p>
+        <a href="#" class="btn btn-primary" onclick="showWord();">次へ</a>
+      </div>
+      <div class="card-footer text-muted">
+        約5000単語ある中からランダムで表示しています。
+      </div>
+    </div>
 
-    <p id="word"></p>
-    <p id="mean"></p>
-    <input type="button" value="次へ" onclick="showWord();"/>
+    <div class="card text-center" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <h5>問題</h5>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" id="q_word"></h5>
+        <p class="card-text" id="a_mean"></p>
+        <a href="#" class="btn btn-primary" onclick="showAnswer();">答えを見て次へ</a>
+      </div>
+      <div class="card-footer text-muted">
+        約5000単語ある中からランダムで表示しています。
+      </div>
+    </div>
+
+    <div class="card text-center">
+      <div class="card-header">
+        <h5>単語一覧</h5>
+      </div>
+      <div class="card-body d-flex justify-content-center">
+        <table class="table table-striped" id="table1" style="width: 49%; margin-right: 5px;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">単語</th>
+              <th scope="col">意味</th>
+            </tr>
+          </thead>
+          <tbody id="tbody1"></tbody>
+        </table>
+        <table class="table table-striped" id="table2" style="width: 49%; margin-left: 5px;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">単語</th>
+              <th scope="col">意味</th>
+            </tr>
+          </thead>
+          <tbody id="tbody2"></tbody>
+        </table>
+      </div>
+    </div>
+
+
 
     <script type="text/javascript" src="app.js"></script>
     <!-- Optional JavaScript -->
